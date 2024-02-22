@@ -1,4 +1,6 @@
 <?php
+require_once './config.php';
+
 $name = $email = $phone = $message = "";
 $success = false;
 $err = [];
@@ -44,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($name)) {
         $err['name'] = "Name is required";
-    } elseif (!validate_alpha($name)) {
-        $err['name'] = "Name must be 4 to 50 letters long and contain only letters and whitespaces";
+    } elseif (!validate_alpha($name, max: MAX_NAME_LENGTH)) {
+        $err['name'] = "Name must be 4 to 120 letters long and contain only letters and whitespaces";
     }
 
     if (empty($email)) {
@@ -62,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($message)) {
         $err['message'] = "Message is required";
-    } elseif (!validate_alpha($message, max: 3000, allows_numbers: true)) {
+    } elseif (!validate_alpha($message, max: MAX_MESSAGE_LENGTH, allows_numbers: true)) {
         $err['message'] = "Message must be 4 to 3000 letters long and contain alphanumeric characters only";
     }
 
