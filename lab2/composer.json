@@ -1,0 +1,16 @@
+{
+    "name": "user/lab2",
+    "authors": [
+        {
+            "name": "MahmoudDabbous",
+            "email": "mahmoud19728@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "config.php",
+            "functions.php"
+        ]
+    },
+    "require": {}
+}
