@@ -16,7 +16,7 @@ function clean_input(string $input): string
 function validate_alpha(string $string, int $min = 4, int $max = 50, bool $allows_numbers = false): bool
 {
     if ($allows_numbers) {
-        $regex = "/^[a-zA-Z0-9 ]{$min},{$max}}$/";
+        $regex = "/^[a-zA-Z0-9 ]{{$min},{$max}}$/";
     } else {
         $regex = "/^[a-zA-Z ]{{$min},{$max}}$/";
     }
@@ -30,7 +30,7 @@ function validate_email(string $email): bool
 
 function validate_phone(string $phone): bool
 {
-    return preg_match("/^[0-9]{11}$/", $phone);
+    return preg_match("/^0[0-9]{10}$/", $phone);
 }
 
 function display_error(string $key, array $err): string
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($phone)) {
         $err['phone'] = "Phone number is required";
     } elseif (!validate_phone($phone)) {
-        $err['phone'] = "Invalid phone number";
+        $err['phone'] = "Invalid phone number, It must start with 0 and be 11 numbers long";
     }
 
     if (empty($message)) {
