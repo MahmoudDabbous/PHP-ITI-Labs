@@ -8,8 +8,11 @@ if (empty($_SESSION['name']) || empty($_SESSION['email']) || empty($_SESSION['ph
 }
 
 $name = $_SESSION['name'];
-$logData = @file_get_contents('log.txt');
-$logLines = explode(PHP_EOL, $logData);
+$file = fopen(LOG_FILE, "r");
+$content = fread($file, filesize(LOG_FILE));
+fclose($file);
+
+$logLines = explode(PHP_EOL, $content);
 
 session_destroy();
 ?>
