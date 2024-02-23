@@ -8,11 +8,8 @@ if (empty($_SESSION['name']) || empty($_SESSION['email']) || empty($_SESSION['ph
 }
 
 $name = $_SESSION['name'];
-$file = fopen(LOG_FILE, "r");
-$content = fread($file, filesize(LOG_FILE));
-fclose($file);
-
-$logLines = explode(PHP_EOL, $content);
+$logData = @file_get_contents('log.txt');
+$logLines = explode(PHP_EOL, $logData);
 
 session_destroy();
 ?>
@@ -29,7 +26,7 @@ session_destroy();
 <body>
     <h1>Thank you for contacting us <?= htmlspecialchars($name) ?></h1>
     <h3>Log Data</h3>
-    <?php if ($logData) : ?>
+    <?php if ($logLines) : ?>
         <table>
             <thead>
                 <tr>

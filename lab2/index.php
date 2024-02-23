@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'message' => $message
         ];
         log_form_submission($name, $email);
-        $logs = file_get_contents(LOG_FILE);
         header("location: ./success.php");
     }
 }

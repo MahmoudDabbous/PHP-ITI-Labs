@@ -36,7 +36,5 @@ function display_error(string $key, array $err): string
 function log_form_submission(string $name, string $email)
 {
     $logData = date("F j Y g:i a") . " | " . $_SERVER['REMOTE_ADDR'] . " | $email | $name" . PHP_EOL;
-    $file = fopen(LOG_FILE, "a");
-    fwrite($file, $logData);
-    fclose($file);
+    file_put_contents(LOG_FILE, $logData, FILE_APPEND);
 }
