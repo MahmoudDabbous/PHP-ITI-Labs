@@ -1,0 +1,16 @@
+{
+    "name": "dabbous/lab3",
+    "autoload": {
+        "files": ["config.php"],
+        "psr-4": {
+            "Dabbous\\Lab3\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MahmoudDabbous",
+            "email": "mahmoud19728@gmail.com"
+        }
+    ],
+    "require": {}
+}
