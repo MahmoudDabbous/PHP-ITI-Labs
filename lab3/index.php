@@ -5,8 +5,7 @@ require_once 'vendor/autoload.php';
 use Dabbous\Lab3\Counter;
 use Dabbous\Lab3\Visitor;
 
-$countFilePath = VISITS_LOG;
-$counter = new Counter($countFilePath);
+$counter = new Counter();
 
 if (!Visitor::isActive()) {
     $counter->incrementCount();
