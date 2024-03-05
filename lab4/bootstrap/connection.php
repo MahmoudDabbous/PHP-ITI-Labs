@@ -17,5 +17,9 @@ try {
     $mgr->setAsGlobal();
     $mgr->bootEloquent();
 } catch (\Exception $ex) {
-    echo "Error: " . $ex->getMessage();
+    echo "<h1>Error, Please contact administrator: </h1>";
+    echo "<pre>";
+    print_r($ex->getMessage());
+    echo "</pre>";
+    die();
 }

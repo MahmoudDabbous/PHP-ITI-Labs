@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Dabbous\Store\Models\Items;
+use Dabbous\Store\Repositories\ItemsRepository;
 
 $id = $product_code = $product_name = $list_price = $reorder_level = $units_in_stock = $category = $country = $rating = $discontinued = $date = "";
 $photo = "";
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($rating)) {
         $errors[] = "Rating is required.";
-    } elseif (!is_numeric($rating) || $rating < 0 || $rating > 5) {
+    } elseif (!is_numeric($rating) || $rating <= 0 || $rating >= 5) {
         $errors[] = "Rating must be a numeric value between 0 and 5.";
     }
 
@@ -77,26 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        $item = new Items;
+        $item = [];
 
-        $item->product_code = $product_code;
-        $item->product_name = $product_name;
-        $item->photo = $photo;
-        $item->list_price = $list_price;
-        $item->reorder_level = $reorder_level;
-        $item->units_in_stock = $units_in_stock;
-        $item->category = $category;
-        $item->rating = $rating;
-        $item->date = $date;
-        $item->discontinued = $discontinued;
+        $item['product_code'] = $product_code;
+        $item['product_name'] = $product_name;
+        $item['photo'] = $photo;
+        $item['list_price'] = $list_price;
+        $item['reorder_level'] = $reorder_level;
+        $item['units_in_stock'] = $units_in_stock;
+        $item['category'] = $category;
+        $item['rating'] = $rating;
+        $item['date'] = $date;
+        $item['discontinued'] = $discontinued;
 
-        try {
-            $item->save();
-        } catch (\Exception $th) {
-            echo "Error saving item: " . $th->getMessage();
-        }
+        ItemsRepository::store_record($item);
 
-        header('Location: https://mahmouddabbous.com');
+        header('Location: ./');
         exit();
     }
 }

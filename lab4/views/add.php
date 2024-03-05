@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Item Form</title>
-    <link rel="stylesheet" href="https://mahmouddabbous.com/resources/style.css">
+    <link rel="stylesheet" href="./resources/style.css">
 </head>
 
 <body>
-    <h2>Create Item</h2>
+    <h1>Create Item</h1>
+    <div class="">
+        <a href="./">Back</a>
+    </div>
     <?php if (!empty($errors)) : ?>
         <ul>
             <?php foreach ($errors as $error) : ?>

@@ -1,7 +1,7 @@
 <?php
 
 // define the storage path for the images
-define('IMAGE_STORAGE_URI', 'https://mahmouddabbous.com/resources/images/');
+define('IMAGE_STORAGE_URI', '/resources/images/');
 
 // define mysql configuration 
 define('MYSQL_HOST', 'localhost');
