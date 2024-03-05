@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <div class="">
+        <a href="./">Back</a>
+    </div>
     <table border="2">
         <thead>
             <tr>

@@ -26,7 +26,7 @@
                 <tr>
                     <td><?= $item['id'] ?></td>
                     <td><?= $item['product_name'] ?></td>
-                    <td><a href="/?item=<?= $item['id'] ?>">More</a></td>
+                    <td><a href="./?item=<?= $item['id'] ?>">More</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
