@@ -28,7 +28,7 @@ class ItemsRepository implements RepositoryContract
 
     public static function paginate_records($page, $offset = 5)
     {
-        return Items::select(['id', 'product_name'])
+        return Items::select(['id', 'product_name', 'product_code', 'list_price', 'rating'])
             ->skip($page * 5)
             ->take($offset)
             ->get();
@@ -40,7 +40,7 @@ class ItemsRepository implements RepositoryContract
 
         $item->product_code = $data['product_code'];
         $item->product_name = $data['product_name'];
-        $item->photo = $data['photo'];
+        // $item->photo = $data['photo'];
         $item->list_price = $data['list_price'];
         $item->reorder_level = $data['reorder_level'];
         $item->units_in_stock = $data['units_in_stock'];
@@ -49,13 +49,25 @@ class ItemsRepository implements RepositoryContract
         $item->date = $data['date'];
         $item->discontinued = $data['discontinued'];
 
-        try {
+        // try {
             $item->save();
-        } catch (\Exception $ex) {
-            echo "<h1>Error saving item: </h1>";
-            echo "<pre>";
-            print_r($ex->getMessage());
-            echo "</pre>";
-        }
+        // } catch (\Exception $ex) {
+        //     echo "<h1>Error saving item: </h1>";
+        //     echo "<pre>";
+        //     print_r($ex->getMessage());
+        //     echo "</pre>";
+        // }
+    }
+
+    public static function delete_record($id)
+    {
+        $item = Items::where('id', $id)->get()->first();
+        $item->delete();
+    }
+
+    public static function update_record($id, $data)
+    {
+        Items::where('id', $id)
+            ->update($data);
     }
 }
